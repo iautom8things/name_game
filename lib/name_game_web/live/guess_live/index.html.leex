@@ -1,0 +1,100 @@
+<h1 class="title is-3 has-text-danger has-text-weight-bold">THIS IS NOT WHERE YOU SUBMIT YOUR GUESS!  This is ONLY to help you understand the scoring!</h1>
+<h1 class="title is-1">What if the name is: <strong><%= @name %></strong> ?</h1>
+
+<p>
+  This is a tool to show you how the scoring of this game will work.  If you're a nerd 🤓 and want to learn the algorithm behind this, <a href="https://en.wikipedia.org/wiki/Levenshtein_distance" target="_blank">click here</a>
+</p>
+
+<hr>
+    <h6 class="title is-5">Rules</h6>
+    <div class="list">
+      <div class='list-item'>
+        Every additional <strong>(incorrect)</strong> letter counts as a point <strong class="has-text-danger">(Points are BAD!)</strong>
+      </div>
+      <div class='list-item'>
+        Every missing letter counts as a point <strong class="has-text-danger">(Remember, these are BAD!)</strong>
+      </div>
+    </div>
+<div class="columns">
+  <div class="column">
+    <h2 class="title is-4">Add a Guess</h2>
+    <button class="button is-primary" phx-click="add-guess"><span class="icon"><i class="fas fa-plus"></i></span><span>Add</span></button>
+    <input class="input" placeholder="Type a guess here and click 'Add'" value="<%= @current_guess %>"
+      phx-window-keyup="update-guess"
+      phx-debounce=200 />
+  <%= if not is_nil(@last_added_guess) do %>
+    <div class="has-text-gray">Added "<%= @last_added_guess %>" to scores. <a href="#<%= @last_added_guess %>">Click here to view it ...</a></div>
+  <% end %>
+  </div>
+  <div data-hash="<%= @last_added_guess %>" phx-hook="UpdatedView"></div>
+</div>
+<h2 class="title is-4">Example Guesses w/ Scores</h2>
+<div class="cards">
+<%= for guess <- @scores do %>
+<div class="card">
+  <header class="card-header">
+    <div class="card-header-title level">
+      <div class="level-left">
+        <a id="<%= guess.name %>" name="<%= guess.name %>" class="level-item" href="#<%= guess.name %>"><%= guess.name %></a>
+      </div>
+      <div class="level-right">
+        <div class="level-item">
+        <%= for {action, text} <- guess.path, action in [:eq,:del] do %>
+        <span style="color:
+          <%= case action do
+             :eq -> "black"
+             :del -> "red"
+          end %>
+          "><%= text %></span>
+        <% end %>
+        &nbsp;&nbsp;<span class="icon"><i class="fas fa-arrow-right"></i></span>&nbsp;&nbsp;
+        <%= for {action, text} <- guess.path, action in [:eq,:ins] do %>
+        <span style="color:
+          <%= case action do
+             :eq -> "black"
+             :ins -> "green"
+          end %>
+          "><%= text %></span>
+        <% end %>
+        </div>
+      </div>
+    </div>
+  </header>
+  <div class="card-content">
+    <div class="content">
+      <table class="table">
+        <thead><tr><th>Base Score</th><th>First Letter Bonus</th><th>Length Bonus</th><th>Final Score</th></tr></thead>
+        <tbody>
+          <tr>
+            <td><%= guess.base_score %></td>
+            <td>
+              <%= if  guess.correct_first_letter? do %>
+                <div class="has-text-primary">-1</div>
+              <% else %>
+                <div class="has-text-danger">0</div>
+              <% end %>
+            </td>
+            <td>
+              <%= if  guess.correct_length? do %>
+                <div class="has-text-primary">-1</div>
+              <% else %>
+                <div class="has-text-danger">0</div>
+              <% end %>
+            </td>
+            <td> <%= guess.final_score %> </td>
+          </tr>
+        </tbody>
+        </table>
+    </div>
+  </div>
+  <footer class="card-footer">
+    <button class="card-footer-item button is-danger" phx-click="remove-guess" phx-value-guess="<%= guess.name %>"><span class="icon"><i class="fas fa-times"></i></span><span>Remove</span></button>
+  </footer>
+</div>
+  <% end %>
+
+</div>
+
+<%= for _ <- 0..30 do %>
+  <br/>
+<% end %>

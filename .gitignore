@@ -1,0 +1,59 @@
+# The directory Mix will write compiled artifacts to.
+/_build/
+
+# If you run "mix test --cover", coverage assets end up here.
+/cover/
+
+# The directory Mix downloads your dependencies sources to.
+/deps/
+
+# Where 3rd-party dependencies like ExDoc output generated docs.
+/doc/
+
+# Ignore .fetch files in case you like to edit your project deps locally.
+/.fetch
+
+# If the VM crashes, it generates a dump, let's ignore it too.
+erl_crash.dump
+
+# Also ignore archive artifacts (built via "mix archive.build").
+*.ez
+
+# Ignore package tarball (built via "mix hex.build").
+voyd-*.tar
+
+# If NPM crashes, it generates a log, let's ignore it too.
+npm-debug.log
+
+# The directory NPM downloads your dependencies sources to.
+/assets/node_modules/
+
+# Yarn
+/assets/yarn-error.log
+
+# Since we are building assets from assets/,
+# we ignore priv/static. You may want to comment
+# this depending on your deployment strategy.
+/priv/static/
+.elixir_ls
+.env*
+.sobelow
+.vscode/
+
+# Branding file
+/assets/css/branding.scss
+
+/src/*.erl
+
+# Optional bash profiles for dev
+.bash_profiles/*.bash
+
+# Ignore any portal configs we pull in from Git for testing
+config/voyd_config_*
+
+# We want to only keep application-specific images and
+# ignore config-specific images in /assets/static/images.
+# We do this by ignoring everything in the folder *except*
+# application-specific images as defined in /assets/static/images/.gitignore
+/assets/static/images/*
+!/assets/static/images/.gitignore
