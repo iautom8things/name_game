@@ -3,7 +3,7 @@ defmodule NameGameWeb.GuessLive.Index do
 
   require Logger
 
-  @default_guesses ~w(Brian Ted Ryan)
+  @default_guesses ~w(Brian Ted Ryan Bryain)
   @impl true
   def mount(_params, _session, socket) do
     socket =

@@ -1,4 +1,5 @@
-<h1 class="title is-3 has-text-danger has-text-weight-bold">THIS IS NOT WHERE YOU SUBMIT YOUR GUESS!  This is ONLY to help you understand the scoring!</h1>
+<h1 class="title is-3 has-text-danger has-text-weight-bold">THIS IS NOT WHERE YOU SUBMIT YOUR GUESS!</h1>
+<h2 class="subtitle is-4 has-text-danger has-text-weight-bold">This is ONLY to help you understand the scoring!<br/>If you would like to submit your guess <a href="https://forms.gle/mwxNfE96ZXb1dGM46"><span class="icon"><i class="fas fa-arrow-right"></i></span><span>CLICK HERE</span><span class="icon"><i class="fas fa-arrow-left"></i></span></a> </h1>
 <h1 class="title is-1">What if the name is: <strong><%= @name %></strong> ?</h1>
 
 <p>
@@ -9,10 +10,19 @@
     <h6 class="title is-5">Rules</h6>
     <div class="list">
       <div class='list-item'>
-        Every additional <strong>(incorrect)</strong> letter counts as a point <strong class="has-text-danger">(Points are BAD!)</strong>
+        <span class="icon has-text-danger"><i class="fas fa-frown"></i></span><span class="has-text-danger">+1 point</span><span> - Every additional letter counts as a point <strong class="has-text-danger">(Points are BAD!)</strong></span>
       </div>
       <div class='list-item'>
-        Every missing letter counts as a point <strong class="has-text-danger">(Remember, these are BAD!)</strong>
+        <span class="icon has-text-danger"><i class="fas fa-frown"></i></span><span class="has-text-danger">+1 point</span><span> - Every missing letter counts as a point <strong class="has-text-danger">(Points are BAD!)</strong></span>
+      </div>
+      <div class='list-item'>
+        <span class="icon has-text-danger"><i class="fas fa-frown"></i></span><span class="has-text-danger">+1 point</span><span> - Every incorrect letter counts as a point <strong class="has-text-danger">(Points are BAD)</strong></span>
+      </div>
+      <div class='list-item'>
+        <span class="icon has-text-success"><i class="fas fa-smile"></i></span><span class="has-text-success">-1 point</span><span> - Guessing the CORRECT first character is a BONUS <strong class="has-text-success">(Points are BAD, so this is GOOD!)</strong></span>
+      </div>
+      <div class='list-item'>
+        <span class="icon has-text-success"><i class="fas fa-smile"></i></span><span class="has-text-success">-1 point</span><span> - Guessing the CORRECT length of the name is a BONUS <strong class="has-text-success">(Points are BAD, so this is GOOD!)</strong></span>
       </div>
     </div>
 <div class="columns">
