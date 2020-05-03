@@ -19,9 +19,6 @@ erl_crash.dump
 # Also ignore archive artifacts (built via "mix archive.build").
 *.ez
 
-# Ignore package tarball (built via "mix hex.build").
-voyd-*.tar
-
 # If NPM crashes, it generates a log, let's ignore it too.
 npm-debug.log
 
@@ -40,20 +37,8 @@ npm-debug.log
 .sobelow
 .vscode/
 
-# Branding file
-/assets/css/branding.scss
-
 /src/*.erl
 
 # Optional bash profiles for dev
 .bash_profiles/*.bash
 
-# Ignore any portal configs we pull in from Git for testing
-config/voyd_config_*
-
-# We want to only keep application-specific images and
-# ignore config-specific images in /assets/static/images.
-# We do this by ignoring everything in the folder *except*
-# application-specific images as defined in /assets/static/images/.gitignore
-/assets/static/images/*
-!/assets/static/images/.gitignore
