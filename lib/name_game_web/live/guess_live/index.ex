@@ -39,7 +39,7 @@ defmodule NameGameWeb.GuessLive.Index do
 
   @impl true
   def handle_event("add-guess", _params, socket) do
-    Logger.debug("add-guess!")
+    Logger.debug("add-guess! #{socket.assigns.current_guess}")
     guess = socket.assigns.current_guess
     guesses = [guess | socket.assigns.guesses]
 
